@@ -24,5 +24,12 @@ INSERT INTO Filmes (Titulo, IdGenero) VALUES
 	('Velozes e Furiosos 8', 2)
 	,('A Morte Está de Parabéns', 1)
 
-SELECT * FROM Generos 
+Delete FROM Generos WHERE IdGenero = 3
+
+SELECT * FROM Generos order by IdGenero asc
 SELECT * FROM Filmes 
+
+Select F.IdFilme, F.Titulo, G.IdGenero, G.Nome AS NomeGenero 
+FROM Filmes F 
+INNER JOIN Generos G 
+ON F.IdGenero = G.IdGenero;
