@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Senai.Optus.WebApi.Domains;
 using Senai.Optus.WebApi.Repositorys;
 using System;
@@ -34,6 +35,44 @@ namespace Senai.Optus.WebApi.Controllers
             {
                 return BadRequest(new { mensagem = "Cago no pau, veado" + ex.Message });
             }
+        }
+
+        [Authorize(Roles = "ADMINISTRADOR")]
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            Estilos Estilo = EstiloRepository.BuscarPorId(id);
+            if (Estilo == null)
+                return NotFound();
+            return Ok(Estilo);
+        }
+
+        [HttpPut]
+        public IActionResult Atualizar (Estilos estilo)
+        {
+            try
+            {
+                
+                Estilos EstiloBuscado = EstiloRepository.BuscarPorId
+                    (estilo.IdEstilo);
+          
+                if (EstiloBuscado == null)
+                    return NotFound();
+               
+                EstiloRepository.Atualizar(estilo);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = "Oh Aba" });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar (int id)
+        {
+            EstiloRepository.Deletar(id);
+            return Ok();
         }
     }
 }
