@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Senai.AutoPeças.WebApi.Domains
 {
-    public partial class EkipsContext : DbContext
+    public partial class AutoPecasContext : DbContext
     {
-        public EkipsContext()
+        public AutoPecasContext()
         {
         }
 
-        public EkipsContext(DbContextOptions<EkipsContext> options)
+        public AutoPecasContext(DbContextOptions<AutoPecasContext> options)
             : base(options)
         {
         }

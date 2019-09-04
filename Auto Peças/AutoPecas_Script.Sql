@@ -33,10 +33,16 @@ create table Usuarios
 	,Senha varchar (350) not null
 );
 
+alter table Usuarios 
+add Permissao varchar(255) 
+
 -- DML
 
 insert into Usuarios (Email, Senha) Values ('tiagosola@gmail.com','123456')
 										   ,('raysantos@gmail.com','654321')
+
+insert into Usuarios (Email, Senha, Permissao) Values ('admin@admin.com', 'admin', 'Administrador')
+													,('cliente@cliente.com', 'cliente', 'Cliente')
 
 insert into Fornecedores (Nome, Cnpj, RazaoSocial, Endereco, IdUsuario)
 Values ('TiagoInterprisses','61.906.969/0001-10','Ti e Ago Companhia ME','Rua Urbino 24', 1)
@@ -53,3 +59,4 @@ Values ('534243','Aro 22. Cromadão','500g','R$235,00','R$335,00', 2)
 SELECT * FROM Usuarios
 SELECT * FROM Fornecedores
 SELECT * FROM Pecas
+sp_help Pecas
